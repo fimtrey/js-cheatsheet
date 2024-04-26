@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JS Cheatsheet</title>
+    <link rel="stylesheet" href="normalize.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <section>
+        <h2>Basics</h2>
+        <div class="panelHelper">Basic syntax, introduction.</div>
+        <div class="panelInner">
+          <h4>On page script</h4>
+
+          <pre>
+&lt;<span>script</span> <span>type</span>=<span>"text/javascript"</span>&gt; ...
+&lt;<span>script</span>&gt;
+</pre
+          >
+          <h4>Include external JS file</h4>
+
+          <pre><span>&lt;<span>script</span> <span>src</span>=<span>"filename.js"</span>&gt;&lt;/<span>script</span>&gt;</span>
+</pre>
+          <h4>Delay - 1 second timeout</h4>
+
+          <pre><span>setTimeout</span><span>(</span><span>function</span> <span>(</span><span>)</span> <span>{</span>
+
+<span>}</span><span>,</span> <span>1000</span><span>)</span><span>;</span>
+</pre>
+          <h4>Functions</h4>
+
+          <pre>
+function <span>addNumbers</span>(a, b) {
+  <span>return</span> a + b; ;
+}
+</pre
+          >
+
+          <pre>
+x <span>=</span> addNumbers(<span>1</span>, <span>2</span>);
+</pre
+          >
+          <h4>Edit DOM element</h4>
+
+          <pre><span class="global">document</span>.<span class="method">getElementById</span>(<span class="string">"elementID"</span>).innerHTML <span>=</span> <span>"Hello World!"</span>;
+</pre>
+          <h4>Output</h4>
+
+          <pre><span>console</span><span class="method">.log</span>(a); <span class="jsComment">// write to the browser console</span>
+<span class="global">document</span>.<span class="method">write</span>(a); <span class="jsComment">// write to the HTML</span>
+<span>alert</span>(a); <span class="jsComment">// output in an alert box</span>
+<span>confirm</span>(<span>"Really?"</span>); <span class="jsComment">// yes/no dialog, returns true/false depending on user click</span>
+<span>prompt</span>(<span>"Your age?"</span>,<span class="string">"0"</span>); <span class="jsComment">// input dialog. Second argument is the initial value</span>
+</pre>
+          <h4>Comments</h4>
+
+          <pre><span class="jsComment">/* Multi line
+comment */</span>
+<span class="jsComment">// One line</span>
+</pre>
+        </div>
+      </section>
+
+      <section>
+        <h2>Loops</h2>
+        <div class="panelHelper">
+          Cycle through a block of code a number of times.
+        </div>
+        <div class="panelInner">
+          <div class="wrapCharCodes">
+            <h4>For Loop</h4>
+            <pre><span>for</span> (<span class="keyword">let</span> i <span>=</span> <span>0</span>; i <span>&lt;</span> <span>10</span>; i<span>++</span>) {
+  <span class="global">document</span>.<span class="method">write</span>(i <span>+</span> <span>": "</span> <span>+</span> i<span>*</span><span>3</span> <span>+</span> <span>"&lt;br /&gt;"</span>);
+}
+</pre>
+            <pre><span class="keyword">let</span> sum <span>=</span> <span>0</span>;
+<span>for</span> (<span class="keyword">let</span> i <span>=</span> <span>0</span>; i <span>&lt;</span> a.<span class="method">length</span>; i<span>++</span>) {
+  sum <span>+</span> <span>=</span> a[i];
+} <span class="jsComment">// parsing an array</span>
+</pre>
+            <pre>html <span>=</span> <span class="string">""</span>;
+<span>for</span> (<span class="keyword">let</span> i of custOrder) {
+  html <span>+</span><span>=</span> <span>"&lt;li&gt;"</span> <span>+</span> i <span>+</span> <span>"&lt;/li&gt;"</span>;
+}
+</pre>
+            <h4>While Loop</h4>
+            <pre><span class="keyword">let</span> i <span>=</span> <span>1</span>; <span class="jsComment">// initialize</span>
+<span class="keyword">while</span> (i <span>&lt;</span> <span>100</span>) { <span class="jsComment">// enters the cycle if statement is true</span>
+  i <span>*</span><span>=</span> <span>2</span>; <span class="jsComment">// increment to avoid infinite loop</span>
+  <span class="global">document</span>.<span class="method">write</span>(i <span>+</span> <span>", "</span>); <span class="jsComment">// output</span>
+}
+</pre>
+            <h4>Do While Loop</h4>
+            <pre><span class="keyword">let</span> i <span>=</span> <span>1</span>; <span class="jsComment">// initialize</span>
+<span class="keyword">do</span> { <span class="jsComment">// enters cycle at least once</span>
+  i <span>*</span><span>=</span> <span>2</span>; <span class="jsComment">// increment to avoid infinite loop</span>
+  <span class="global">document</span>.<span class="method">write</span>(i <span>+</span> <span>", "</span>); <span class="jsComment">// output</span>
+} <span class="keyword">while</span> (i <span>&lt;</span> <span>100</span>) <span class="jsComment">// repeats cycle if statement is true at the end</span>
+</pre>
+            <h4>Break</h4>
+            <pre><span>for</span> (<span class="keyword">let</span> i <span>=</span> <span>0</span>; i <span>&lt;</span> <span>10</span>; i<span>++</span>) {
+  <span class="keyword">if</span> (i <span>==</span> <span>5</span>) { <span class="keyword">break</span>; } <span class="jsComment">// stops and exits the cycle</span>
+  <span class="global">document</span>.<span class="method">write</span>(i <span>+</span> <span>", "</span>); <span class="jsComment">// last output number is 4</span>
+}
+</pre>
+            <h4>Continue</h4>
+            <pre><span>for</span> (<span class="keyword">let</span> i <span>=</span> <span>0</span>; i <span>&lt;</span> <span>10</span>; i<span>++</span>) {
+  <span class="keyword">if</span> (i <span>==</span> <span>5</span>) { <span class="keyword">continue</span>; } <span class="jsComment">// skips the rest of the cycle</span>
+  <span class="global">document</span>.<span class="method">write</span>(i <span>+</span> <span>", "</span>); <span class="jsComment">// skips 5</span>
+}
+</pre>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>If - Else</h2>
+        <div class="panelHelper">If-Else and Switch statements.</div>
+        <div class="panelInner">
+          <div class="wrapCharCodes">
+            <pre><span class="keyword">if</span> ((age <span>&gt;=</span> <span>14</span>) <span>&amp;</span><span>&amp;</span> (age <span>&lt;</span> <span>19</span>)) { <span class="jsComment">// logical condition</span>
+  status <span>=</span> <span>"Eligible."</span>; <span class="jsComment">// executed if condition is true</span>
+} <span class="keyword">else</span> { <span class="jsComment">// else block is optional</span>
+  status <span>=</span> <span>"Not eligible."</span>; <span class="jsComment">// executed if condition is false</span>
+}
+</pre>
+            <h4>Switch Statement</h4>
+            <pre><span class="keyword">switch</span> (<span class="keyword">new</span> <span class="lib">Date</span>().<span class="method">getDay</span>()) { <span class="jsComment">// input is current day</span>
+<span class="keyword">case</span> <span>6</span>: <span class="jsComment">// if (day == 6)</span>
+	text <span>=</span> <span class="string">"Saturday"</span>; 
+	<span class="keyword">break</span>;
+<span class="keyword">case</span> <span>0</span>: <span class="jsComment">// if (day == 0)</span>
+	text <span>=</span> <span class="string">"Sunday"</span>;
+	<span class="keyword">break</span>;
+<span class="keyword">default</span>: <span class="jsComment">// else...</span>
+	text <span>=</span> <span class="string">"Whatever"</span>;
+} 
+</pre>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>variables</h2>
+        <div class="panelHelper">JavaScript variables and operators</div>
+        <div class="panelInner">
+          <div class="wrapCharCodes">
+            <pre><span class="keyword">let</span> a;                         <span class="jsComment">// variable</span>
+<span class="keyword">let</span> b <span>=</span> <span class="string">"init"</span>;                <span class="jsComment">// string</span>
+<span class="keyword">let</span> c <span>=</span> <span class="string">"Hi"</span> <span>+</span> <span>" "</span> <span>+</span> <span class="string">"Joe"</span>;    <span class="jsComment">// = "Hi Joe"</span>
+<span class="keyword">let</span> d <span>=</span> <span>1</span> <span>+</span> <span>2</span> <span>+</span> <span class="string">"3"</span>;           <span class="jsComment">// = "33"</span>
+<span class="keyword">let</span> e <span>=</span> [<span>2</span>,<span>3</span>,<span>5</span>,<span>8</span>];             <span class="jsComment">// array</span>
+<span class="keyword">let</span> f <span>=</span> <span>false</span>;                 <span class="jsComment">// boolean</span>
+<span class="keyword">let</span> g <span>=</span><span> /()/</span>;                  <span class="jsComment">// RegEx</span>
+<span class="keyword">let</span> <span>h</span> <span>=</span> function(){};          <span class="jsComment">// function object</span>
+<span class="keyword">const</span> PI <span>=</span> <span>3.14</span>;               <span class="jsComment">// constant</span>
+<span class="keyword">let</span> a <span>=</span> <span>1</span>, b <span>=</span> <span>2</span>, c <span>=</span> a <span>+</span> b;   <span class="jsComment">// one line</span>
+<span class="keyword">let</span> z <span>=</span> <span class="string">'zzz'</span>;                 <span class="jsComment">// block scope local variable</span>
+</pre>
+            <h4>Strict mode</h4>
+            <pre><span>"use strict"</span>;                  <span class="jsComment">// Use strict mode to write secure code</span>
+x <span>=</span> <span>1</span>;                         <span class="jsComment">// Throws an error because variable is not declared</span>
+</pre>
+            <h4>Values</h4>
+            <pre><span>false</span>, <span>true</span>                    <span class="jsComment">// boolean</span>
+<span>18</span>, <span>3.14</span>, 0b10011, <span>0xF6</span>, <span>NaN</span>   <span class="jsComment">// number</span>
+<span class="string">"flower"</span>, <span class="string">'John'</span>               <span class="jsComment">// string</span>
+<span>undefined</span>, <span>null</span> , <span>Infinity</span>     <span class="jsComment">// special</span>
+</pre>
+            <h4>Operators</h4>
+            <pre>a <span>=</span> b <span>+</span> c <span>-</span> d;                 <span class="jsComment">// addition, substraction</span>
+a <span>=</span> b <span>*</span> (c / d);               <span class="jsComment">// multiplication, division</span>
+x <span>=</span> <span>100</span> <span>%</span> <span>48</span>;                  <span class="jsComment">// modulo. 100 / 48 remainder = 4</span>
+a<span>++</span>; b<span>--</span>;                      <span class="jsComment">// postfix increment and decrement</span>
+</pre>
+            <h4>Bitwise operators</h4>
+            <table class="tableStyle1">
+              <tbody>
+                <tr>
+                  <td>&amp;</td>
+                  <td>AND&nbsp;</td>
+                  <td>
+                    <span class="jsComment"
+                      >&nbsp;5 &amp; 1 (0101 &amp; 0001)</span
+                    >
+                  </td>
+                  <td><span class="jsComment">1 (1)</span></td>
+                </tr>
+                <tr>
+                  <td>|</td>
+                  <td>OR&nbsp;</td>
+                  <td>
+                    <span class="jsComment">&nbsp;5 | 1 (0101 | 0001)</span>
+                  </td>
+                  <td><span class="jsComment">5 (101)</span></td>
+                </tr>
+                <tr>
+                  <td>~</td>
+                  <td>NOT&nbsp;</td>
+                  <td><span class="jsComment">&nbsp;~ 5 (~0101)</span></td>
+                  <td><span class="jsComment">10 (1010)</span></td>
+                </tr>
+                <tr>
+                  <td>^</td>
+                  <td>XOR&nbsp;</td>
+                  <td>
+                    <span class="jsComment">&nbsp;5 ^ 1 (0101 ^ 0001)</span>
+                  </td>
+                  <td><span class="jsComment">4 (100)</span></td>
+                </tr>
+                <tr>
+                  <td>&lt;&lt;</td>
+                  <td>left shift&nbsp;</td>
+                  <td>
+                    <span class="jsComment"
+                      >&nbsp;5 &lt;&lt; 1 (0101 &lt;&lt; 1)</span
+                    >
+                  </td>
+                  <td><span class="jsComment">10 (1010)</span></td>
+                </tr>
+                <tr>
+                  <td>&gt;&gt;</td>
+                  <td>right shift&nbsp;</td>
+                  <td>
+                    <span class="jsComment"
+                      >&nbsp;5 &gt;&gt; 1 (0101 &gt;&gt; 1)</span
+                    >
+                  </td>
+                  <td><span class="jsComment">2 (10)</span></td>
+                </tr>
+                <tr>
+                  <td>&gt;&gt;&gt;</td>
+                  <td>zero fill right shift&nbsp;</td>
+                  <td>
+                    <span class="jsComment"
+                      >&nbsp;5 &gt;&gt;&gt; 1 (0101 &gt;&gt;&gt; 1)</span
+                    >
+                  </td>
+                  <td><span class="jsComment">2 (10)</span></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4>Arithmetic</h4>
+            <pre>a <span>*</span> (b <span>+</span> c)      <span class="jsComment">// grouping</span>
+person.age       <span class="jsComment">// member</span>
+person[age]      <span class="jsComment">// member</span>
+<span>!</span>(a <span>==</span> b)        <span class="jsComment">// logical not</span>
+a <span>!</span><span>=</span> b           <span class="jsComment">// not equal</span>
+<span>typeof</span> a         <span class="jsComment">// type (number, object, function...)</span>
+x <span>&lt;</span><span>&lt;</span> <span>2</span> x <span>&gt;</span><span>&gt;</span> <span>3</span>    <span class="jsComment">// minary shifting</span>
+a <span>=</span> b            <span class="jsComment">// assignment</span>
+a <span>==</span> b           <span class="jsComment">// equals</span>
+a <span>!</span><span>=</span> b           <span class="jsComment">// unequal</span>
+a <span>===</span> b          <span class="jsComment">// strict equal</span>
+a <span>!</span><span>==</span> b          <span class="jsComment">// strict unequal</span>
+a <span>&lt;</span> b a <span>&gt;</span> b      <span class="jsComment">// less and greater than</span>
+a <span>&lt;=</span> b a <span>&gt;=</span> b    <span class="jsComment">// less or equal, greater or eq</span>
+a <span>+</span><span>=</span> b           <span class="jsComment">// a = a + b (works with - * %...)</span>
+a <span>&amp;</span><span>&amp;</span> b           <span class="jsComment">// logical and</span>
+a <span>||</span> b           <span class="jsComment">// logical or</span>
+</pre>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Data Types</h2>
+        <div class="panelHelper">JavaScript variables and objects</div>
+        <div class="panelInner">
+          <div class="wrapCharCodes">
+            <pre><span class="keyword">let</span> age <span>=</span> <span>18</span>;                          <span class="jsComment">// number </span>
+<span class="keyword">let</span> name <span>=</span> <span class="string">"Jane"</span>;                     <span class="jsComment">// string</span>
+<span class="keyword">let</span> name <span>=</span> {first:<span class="string">"Jane"</span>, last:<span class="string">"Doe"</span>}; <span class="jsComment">// object</span>
+<span class="keyword">let</span> truth <span>=</span> <span>false</span>; <span class="jsComment">                    // boolean</span>
+<span class="keyword">let</span> sheets <span>=</span> [<span class="string">"HTML"</span>,<span class="string">"CSS"</span>,<span class="string">"JS"</span>];      <span class="jsComment">// array</span>
+<span class="keyword">let</span> a; <span>typeof</span> a;                       <span class="jsComment">// undefined</span>
+<span class="keyword">let</span> a <span>=</span> <span>null</span>;                          <span class="jsComment">// value null</span>
+</pre>
+            <h4>Objects</h4>
+            <pre><span class="keyword">let</span> student <span>=</span> {            <span class="jsComment">// object name</span>
+firstName:<span class="string">"Jane"</span>,          <span class="jsComment">// list of properties and values</span>
+lastName:<span class="string">"Doe"</span>,
+age:<span>18</span>,
+height:<span>170</span>,
+<span>fullName</span> : function() {    <span class="jsComment">// object function</span>
+ <span>return</span> <span>this</span>.firstName <span>+</span> <span>" "</span> <span>+</span> <span>this</span>.lastName;
+}
+}; 
+</pre>
+            <pre>student.age <span>=</span> <span>19</span>;          <span class="jsComment">// setting value</span>
+student[age]<span>++</span>;            <span class="jsComment">// incrementing</span>
+name <span>=</span> student.fullName(); <span class="jsComment">// call object function</span>
+</pre>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Strings</h2>
+        <div class="panelHelper">
+          Selectors specify which elements are targeted with a style
+        </div>
+        <div class="panelInner">
+          <pre><span class="keyword">let</span> abc <span>=</span> <span class="string">"abcdefghijklmnopqrstuvwxyz"</span>;
+<span class="keyword">let</span> esc <span>=</span> <span>'I don<span>\'</span>t <span>\n</span> know'</span>; <span class="jsComment">// \n new line</span>
+<span class="keyword">let</span> len <span>=</span> abc.<span class="method">length</span>; <span class="jsComment">// string length</span>
+abc.<span class="method">indexOf</span>(<span class="string">"lmno"</span>); <span class="jsComment">// find substring, -1 if doesn't contain </span>
+abc.<span class="method">lastIndexOf</span>(<span class="string">"lmno"</span>); <span class="jsComment">// last occurance</span>
+abc.<span class="method">slice</span>(<span>3</span>, <span>6</span>); <span class="jsComment">// cuts out "def", negative values count from behind</span>
+abc.<span class="method">replace</span>(<span class="string">"abc"</span>,<span class="string">"123"</span>); <span class="jsComment">// find and replace, takes regular expressions</span>
+abc.<span class="method">toUpperCase</span>(); <span class="jsComment">// convert to upper case</span>
+abc.<span class="method">toLowerCase</span>(); <span class="jsComment">// convert to lower case</span>
+abc.<span class="method">concat</span>(<span>" "</span>, str2); <span class="jsComment">// abc + " " + str2</span>
+abc.<span class="method">charAt</span>(<span>2</span>); <span class="jsComment">// character at index: "c"</span>
+abc[<span>2</span>]; <span class="jsComment">// unsafe, abc[2] = "C" doesn't work</span>
+abc.<span class="method">charCodeAt</span>(<span>2</span>); <span class="jsComment">// character code at index: "c" -&gt; 99</span>
+abc.<span class="method">split</span>(<span>","</span>); <span class="jsComment">// splitting a string on commas gives an array</span>
+abc.<span class="method">split</span>(<span class="string">""</span>); <span class="jsComment">// splitting on characters</span>
+<span>128</span>.<span class="method">toString</span>(<span>16</span>); <span class="jsComment">// number to hex(16), octal (8) or binary (2)</span>
+</pre>
+        </div>
+      </section>
+
+      <section>
+        <h2>Events</h2>
+        <div class="panelHelper">Event handlers in JavaScript.</div>
+        <div class="panelInner">
+          <div class="wrapCharCodes">
+            <pre><span>&lt;<span>button</span> <span>onclick</span>=<span>"myFunction();"</span>&gt;</span>
+Click here
+<span>&lt;/<span>button</span>&gt;</span>
+</pre>
+            <h4>Mouse</h4>
+            <p>
+              onclick, oncontextmenu, ondblclick, onmousedown, onmouseenter,
+              onmouseleave, onmousemove, onmouseover, onmouseout, onmouseup
+            </p>
+            <h4>Keyboard</h4>
+            <p>onkeydown, onkeypress, onkeyup</p>
+            <h4>Frame</h4>
+            <p>
+              onabort, onbeforeunload, onerror, onhashchange, onload,
+              onpageshow, onpagehide, onresize, onscroll, onunload
+            </p>
+            <h4>Form</h4>
+            <p>
+              onblur, onchange, onfocus, onfocusin, onfocusout, oninput,
+              oninvalid, onreset, onsearch, onselect, onsubmit
+            </p>
+            <h4>Drag</h4>
+            <p>
+              ondrag, ondragend, ondragenter, ondragleave, ondragover,
+              ondragstart, ondrop
+            </p>
+            <h4>Clipboard</h4>
+            <p>oncopy, oncut, onpaste</p>
+            <h4>Media</h4>
+            <p>
+              onabort, oncanplay, oncanplaythrough, ondurationchange, onended,
+              onerror, onloadeddata, onloadedmetadata, onloadstart, onpause,
+              onplay, onplaying, onprogress, onratechange, onseeked, onseeking,
+              onstalled, onsuspend, ontimeupdate, onvolumechange, onwaiting
+            </p>
+            <h4>Animation</h4>
+            <p>animationend, animationiteration, animationstart</p>
+            <h4>Miscellaneous</h4>
+            <p>
+              transitionend, onmessage, onmousewheel, ononline, onoffline,
+              onpopstate, onshow, onstorage, ontoggle, onwheel, ontouchcancel,
+              ontouchend, ontouchmove, ontouchstart
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Numbers and Math</h2>
+        <div class="panelHelper">Working with numbers in JavaScript.</div>
+        <div class="panelInner">
+          <div class="wrapCharCodes">
+            <pre><span class="keyword">let</span> pi <span>=</span> <span>3.141</span>;
+pi.toFixed(<span>0</span>); <span class="jsComment">// returns 3</span>
+pi.toFixed(<span>2</span>); <span class="jsComment">// returns 3.14 - for working with money</span>
+pi.toPrecision(<span>2</span>) <span class="jsComment">// returns 3.1</span>
+pi.<span class="method">valueOf</span>(); <span class="jsComment">// returns number</span>
+<span class="lib">Number</span>(<span>true</span>); <span class="jsComment">// converts to number</span>
+<span class="lib">Number</span>(<span class="keyword">new</span> <span class="lib">Date</span>()) <span class="jsComment">// number of milliseconds since 1970</span>
+<span>parseInt</span>(<span>"3 months"</span>); <span class="jsComment">// returns the first number: 3</span>
+<span>parseFloat</span>(<span>"3.5 days"</span>); <span class="jsComment">// returns 3.5</span>
+<span class="lib">Number</span>.<span class="method">MAX_VALUE</span> <span class="jsComment">// largest possible JS number</span>
+<span class="lib">Number</span>.<span class="method">MIN_VALUE</span> <span class="jsComment">// smallest possible JS number</span>
+<span class="lib">Number</span>.<span class="method">NEGATIVE_INFINITY</span><span class="jsComment">// -Infinity</span>
+<span class="lib">Number</span>.<span class="method">POSITIVE_INFINITY</span><span class="jsComment">// Infinity</span>
+</pre>
+            <h4>Math.</h4>
+            <pre><span class="keyword">let</span> pi <span>=</span> <span class="lib">Math</span>.<span class="method">PI</span>; <span class="jsComment">// 3.141592653589793</span>
+<span class="lib">Math</span>.<span class="method">round</span>(<span>4.4</span>); <span class="jsComment">// = 4 - rounded</span>
+<span class="lib">Math</span>.<span class="method">round</span>(<span>4.5</span>); <span class="jsComment">// = 5</span>
+<span class="lib">Math</span>.<span class="method">pow</span>(<span>2</span>,<span>8</span>); <span class="jsComment">// = 256 - 2 to the power of 8</span>
+<span class="lib">Math</span>.<span class="method">sqrt</span>(<span>49</span>); <span class="jsComment">// = 7 - square root </span>
+<span class="lib">Math</span>.<span class="method">abs</span>(<span>-</span><span>3.14</span>); <span class="jsComment">// = 3.14 - absolute, positive value</span>
+<span class="lib">Math</span>.<span class="method">ceil</span>(<span>3.14</span>); <span class="jsComment">// = 4 - rounded up</span>
+<span class="lib">Math</span>.<span class="method">floor</span>(<span>3.99</span>); <span class="jsComment">// = 3 - rounded down</span>
+<span class="lib">Math</span>.<span class="method">sin</span>(<span>0</span>); <span class="jsComment">// = 0 - sine</span>
+<span class="lib">Math</span>.<span class="method">cos</span>(<span class="lib">Math</span>.<span class="method">PI</span>); <span class="jsComment">// OTHERS: tan,atan,asin,acos,</span>
+<span class="lib">Math</span>.<span class="method">min</span>(<span>0</span>, <span>3</span>, <span>-</span><span>2</span>, <span>2</span>); <span class="jsComment">// = -2 - the lowest value</span>
+<span class="lib">Math</span>.<span class="method">max</span>(<span>0</span>, <span>3</span>, <span>-</span><span>2</span>, <span>2</span>); <span class="jsComment">// = 3 - the highest value</span>
+<span class="lib">Math</span><span class="method">.log</span>(<span>1</span>); <span class="jsComment">// = 0 natural logarithm </span>
+<span class="lib">Math</span>.<span class="method">exp</span>(<span>1</span>); <span class="jsComment">// = 2.7182pow(E,x)</span>
+<span class="lib">Math</span>.<span class="method">random</span>(); <span class="jsComment">// random number between 0 and 1</span>
+<span class="lib">Math</span>.<span class="method">floor</span>(<span class="lib">Math</span>.<span class="method">random</span>() <span>*</span> <span>5</span>) <span>+</span> <span>1</span>; <span class="jsComment">// random integer, from 1 to 5</span>
+</pre>
+            <h4>Constants like Math.PI:</h4>
+            <p>E, PI, SQRT2, SQRT1_2, LN2, LN10, LOG2E, Log10E</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Dates</h2>
+        <div class="panelHelper">Working with dates.</div>
+        <div class="panelInner">
+          <span id="returnedDate" class="jsComment"
+            >Fri Apr 26 2024 09:50:21 GMT+0200 (Central European Summer
+            Time)</span
+          >
+
+          <pre>
+<span class="keyword">let</span> d <span>=</span> <span class="keyword">new</span> <span class="lib">Date</span>();
+</pre>
+          <span id="returnedDate2" class="jsComment"
+            >1714117821236 miliseconds passed since 1970</span
+          >
+
+          <pre><span class="lib">Number</span>(d) 
+</pre>
+
+          <pre><span class="lib">Date</span>(<span>"2017-06-23"</span>); <span class="jsComment">// date declaration</span>
+<span class="lib">Date</span>(<span class="string">"2017"</span>); <span class="jsComment">// is set to Jan 01</span>
+<span class="lib">Date</span>(<span>"2017-06-23T12:00:00-09:45"</span>); <span class="jsComment">// date - time YYYY-MM-DDTHH:MM:SSZ</span>
+<span class="lib">Date</span>(<span>"June 23 2017"</span>); <span class="jsComment">// long date format</span>
+<span class="lib">Date</span>(<span>"Jun 23 2017 07:45:00 GMT+0100 (Tokyo Time)"</span>); <span class="jsComment">// time zone</span>
+</pre>
+          <h4>Get Times</h4>
+
+          <pre><span class="keyword">let</span> d <span>=</span> <span class="keyword">new</span> <span class="lib">Date</span>();
+a <span>=</span> d.<span class="method">getDay</span>(); <span class="jsComment">// getting the weekday</span>
+
+<span>getDate</span>(); <span class="jsComment">// day as a number (1-31)</span>
+<span>getDay</span>(); <span class="jsComment">// weekday as a number (0-6)</span>
+<span>getFullYear</span>(); <span class="jsComment">// four digit year (yyyy)</span>
+<span>getHours</span>(); <span class="jsComment">// hour (0-23)</span>
+<span>getMilliseconds</span>(); <span class="jsComment">// milliseconds (0-999)</span>
+<span>getMinutes</span>(); <span class="jsComment">// minutes (0-59)</span>
+<span>getMonth</span>(); <span class="jsComment">// month (0-11)</span>
+<span>getSeconds</span>(); <span class="jsComment">// seconds (0-59)</span>
+<span>getTime</span>(); <span class="jsComment">// milliseconds since 1970</span>
+</pre>
+          <h4>Setting part of a date</h4>
+
+          <pre><span class="keyword">let</span> d <span>=</span> <span class="keyword">new</span> <span class="lib">Date</span>();
+d.<span class="method">setDate</span>(d.<span class="method">getDate</span>() <span>+</span> <span>7</span>); <span class="jsComment">// adds a week to a date</span>
+
+<span>setDate</span>(); <span class="jsComment">// day as a number (1-31)</span>
+<span>setFullYear</span>(); <span class="jsComment">// year (optionally month and day)</span>
+<span>setHours</span>(); <span class="jsComment">// hour (0-23)</span>
+<span>setMilliseconds</span>(); <span class="jsComment">// milliseconds (0-999)</span>
+<span>setMinutes</span>(); <span class="jsComment">// minutes (0-59)</span>
+<span>setMonth</span>(); <span class="jsComment">// month (0-11)</span>
+<span>setSeconds</span>(); <span class="jsComment">// seconds (0-59)</span>
+<span>setTime</span>(); <span class="jsComment">// milliseconds since 1970)</span>
+</pre>
+        </div>
+      </section>
+
+      <section>
+        <h2>Arrays</h2>
+        <div class="panelHelper">
+          JavaScript arrays: multiple values in a single variable
+        </div>
+        <div class="panelInner">
+          <pre><span class="keyword">let</span> dogs <span>=</span> [<span class="string">"Bulldog"</span>, <span class="string">"Beagle"</span>, <span class="string">"Labrador"</span>]; 
+<span class="keyword">let</span> dogs <span>=</span> <span class="keyword">new</span> <span>Array</span>(<span class="string">"Bulldog"</span>, <span class="string">"Beagle"</span>, <span class="string">"Labrador"</span>); <span class="jsComment">// declaration</span>
+
+<span>alert</span>(dogs[<span>1</span>]); <span class="jsComment">// access value at index, first item being [0]</span>
+dogs[<span>0</span>] <span>=</span> <span>"Bull Terier"</span>; <span class="jsComment">// change the first item</span>
+
+<span>for</span> (<span class="keyword">let</span> i <span>=</span> <span>0</span>; i <span>&lt;</span> dogs.<span class="method">length</span>; i<span>++</span>) { <span class="jsComment">// parsing with array.length</span>
+<span>console</span><span class="method">.log</span>(dogs[i]);
+}
+</pre>
+          <h4>Methods</h4>
+
+          <pre>dogs.<span class="method">toString</span>(); <span class="jsComment">// convert to string: results "Bulldog,Beagle,Labrador"</span>
+dogs.<span class="method">join</span>(<span>" * "</span>); <span class="jsComment">// join: "Bulldog * Beagle * Labrador"</span>
+dogs.<span class="method">pop</span>(); <span class="jsComment">// remove last element</span>
+dogs.<span class="method">push</span>(<span class="string">"Chihuahua"</span>); <span class="jsComment">// add new element to the end</span>
+dogs[dogs.<span class="method">length</span>] <span>=</span> <span class="string">"Chihuahua"</span>; <span class="jsComment">// the same as push</span>
+dogs.<span class="method">shift</span>(); <span class="jsComment">// remove first element</span>
+dogs.<span class="method">unshift</span>(<span class="string">"Chihuahua"</span>); <span class="jsComment">// add new element to the beginning</span>
+<span>delete</span> dogs[<span>0</span>]; <span class="jsComment">// change element to undefined (not recommended)</span>
+dogs.<span class="method">splice</span>(<span>2</span>, <span>0</span>, <span class="string">"Pug"</span>, <span class="string">"Boxer"</span>); <span class="jsComment">// add elements (where, how many to remove, element list)</span>
+<span class="keyword">let</span> animals <span>=</span> dogs.<span class="method">concat</span>(cats,birds); <span class="jsComment">// join two arrays (dogs followed by cats and birds)</span>
+dogs.<span class="method">slice</span>(<span>1</span>,<span>4</span>); <span class="jsComment">// elements from [1] to [4-1]</span>
+dogs.<span class="method">sort</span>(); <span class="jsComment">// sort string alphabetically</span>
+dogs.<span class="method">reverse</span>(); <span class="jsComment">// sort string in descending order</span>
+x.<span class="method">sort</span>(function(a, b){<span>return</span> a <span>-</span> b}); <span class="jsComment">// numeric sort</span>
+x.<span class="method">sort</span>(function(a, b){<span>return</span> b <span>-</span> a}); <span class="jsComment">// numeric descending sort</span>
+highest <span>=</span> x[<span>0</span>]; <span class="jsComment">// first item in sorted array is the lowest (or highest) value</span>
+x.<span class="method">sort</span>(function(a, b){<span>return</span> <span>0.5</span> <span>-</span> <span class="lib">Math</span>.<span class="method">random</span>()}); <span class="jsComment">// random order sort</span>
+</pre>
+          <hr />
+          <p>
+            concat, copyWithin, every, fill, filter, find, findIndex, forEach,
+            indexOf, isArray, join, lastIndexOf, map, pop, push, reduce,
+            reduceRight, reverse, shift, slice, some, sort, splice, toString,
+            unshift, valueOf
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Global Functions</h2>
+        <div class="panelHelper">Common JS functions.</div>
+        <div class="panelInner">
+          <pre><span>eval</span>(); <span class="jsComment">// executes a string as if it was script code</span>
+<span>String</span>(<span>23</span>); <span class="jsComment">// return string from number</span>
+(<span>23</span>).<span class="method">toString</span>(); <span class="jsComment">// return string from number</span>
+<span class="lib">Number</span>(<span class="string">"23"</span>); <span class="jsComment">// return number from string</span>
+decodeURI(enc); <span class="jsComment">// decode URI. Result: "my page.asp"</span>
+encodeURI(uri); <span class="jsComment">// encode URI. Result: "my%page.asp"</span>
+decodeURIComponent(enc); <span class="jsComment">// decode a URI component</span>
+encodeURIComponent(uri); <span class="jsComment">// encode a URI component</span>
+<span>isFinite</span>(); <span class="jsComment">// is variable a finite, legal number</span>
+<span>isNaN</span>(); <span class="jsComment">// is variable an illegal number</span>
+<span>parseFloat</span>(); <span class="jsComment">// returns floating point number of string</span>
+<span>parseInt</span>(); <span class="jsComment">// parses a string and returns an integer</span>
+</pre>
+        </div>
+      </section>
+
+      <section>
+        <h2>Regular Expressions</h2>
+        <div class="panelHelper">JavaScript regular expression cheetsheet.</div>
+        <div class="panelInner">
+          <pre>
+<span class="keyword">let</span> a <span>=</span> str.<span class="method">search</span>(<span>/CheatSheet/i</span>);
+</pre>
+          <h4>Modifiers</h4>
+          <div class="descriptionListing noscroller">
+            <div>
+              <span>i </span><em>perform case-insensitive matching </em>
+            </div>
+            <div><span>g </span><em>perform a global match </em></div>
+            <div><span>m </span><em>perform multiline matching </em></div>
+          </div>
+
+          <h4>Patterns</h4>
+          <div class="descriptionListing">
+            <div><span>\</span> <em>Escape character</em></div>
+            <div><span>\d </span><em>find a digit </em></div>
+            <div><span>\s </span><em>find a whitespace character </em></div>
+            <div>
+              <span>\b </span><em>find match at beginning or end of a word </em>
+            </div>
+            <div><span>n+ </span><em>contains at least one n </em></div>
+            <div>
+              <span>n* </span><em>contains zero or more occurrences of n </em>
+            </div>
+            <div>
+              <span>n? </span><em>contains zero or one occurrences of n </em>
+            </div>
+            <div><span>^</span> <em>Start of string</em></div>
+            <div><span>$</span> <em>End of string</em></div>
+            <div><span>\uxxxx </span><em>find the Unicode character </em></div>
+            <div>
+              <span class="method">.</span>
+              <em>Any single character</em>
+            </div>
+            <div><span>(a|b)</span> <em>a or b</em></div>
+            <div><span>(...)</span> <em>Group section</em></div>
+            <div>
+              <span>[abc]</span>
+              <em>In range (a, b or c)</em>
+            </div>
+            <div>
+              <span>[0-9]</span>
+              <em>any of the digits between the brackets</em>
+            </div>
+            <div><span>[^abc]</span> <em>Not in range</em></div>
+            <div><span>\s</span> <em>White space</em></div>
+            <div><span>a?</span> <em>Zero or one of a</em></div>
+            <div><span>a*</span> <em>Zero or more of a</em></div>
+            <div>
+              <span>a*?</span>
+              <em>Zero or more, ungreedy</em>
+            </div>
+            <div><span>a+</span> <em>One or more of a</em></div>
+            <div>
+              <span>a+?</span>
+              <em>One or more, ungreedy</em>
+            </div>
+            <div><span>a{2}</span> <em>Exactly 2 of a</em></div>
+            <div><span>a{2,}</span> <em>2 or more of a</em></div>
+            <div><span>a{,5}</span> <em>Up to 5 of a</em></div>
+            <div><span>a{2,5}</span> <em>2 to 5 of a</em></div>
+            <div>
+              <span>a{2,5}?</span>
+              <em>2 to 5 of a, ungreedy</em>
+            </div>
+            <div>
+              <span>[:punct:]</span>
+              <em>Any punctu­ation symbol</em>
+            </div>
+            <div>
+              <span>[:space:]</span>
+              <em>Any space character</em>
+            </div>
+            <div>
+              <span>[:blank:]</span>
+              <em>Space or tab</em>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Errors</h2>
+        <div class="panelHelper">
+          Handling JS errors: try, catch, throw, finally
+        </div>
+        <div class="panelInner">
+          <div class="wrapCharCodes">
+            <pre><span class="keyword">try</span> { <span class="jsComment">// block of code to try</span>
+  undefinedFunction();
+}
+<span class="keyword">catch</span>(err) { <span class="jsComment">// block to handle errors</span>
+  <span>console</span><span class="method">.log</span>(err.message);
+}
+</pre>
+            <h4>Throw error</h4>
+            <pre><span>throw</span> <span>"My error message"</span>; <span class="jsComment">// throw a text</span>
+</pre>
+            <h4>Input validation</h4>
+            <pre><span class="keyword">let</span> x <span>=</span> <span class="global">document</span>.<span class="method">getElementById</span>(<span class="string">"mynum"</span>).<span class="method">value</span>; <span class="jsComment">// get input value</span>
+<span class="keyword">try</span> { 
+  <span class="keyword">if</span>(x <span>==</span> <span class="string">""</span>) <span>throw</span> <span class="string">"empty"</span>; <span class="jsComment">// error cases</span>
+  <span class="keyword">if</span>(<span>isNaN</span>(x)) <span>throw</span> <span>"not a number"</span>;
+  x <span>=</span> <span class="lib">Number</span>(x);
+  <span class="keyword">if</span>(x <span>&gt;</span> <span>10</span>) <span>throw</span> <span>"too high"</span>;
+}
+<span class="keyword">catch</span>(err) { <span class="jsComment">// if there's an error</span>
+  <span class="global">document</span>.<span class="method">write</span>(<span>"Input is "</span> <span>+</span> err); <span class="jsComment">// output error</span>
+<span>console</span><span class="method">.error</span>(err); <span class="jsComment">// write the error in console</span>
+}
+<span>finally</span> {
+  <span class="global">document</span>.<span class="method">write</span>(<span>"&lt;/br /&gt;Done"</span>); <span class="jsComment">// executed regardless of the try / catch result</span>
+}
+</pre>
+            <h4>Error name values</h4>
+            <div class="descriptionListing noscroller">
+              <div>
+                <span>RangeError </span><em>A number is "out of range" </em>
+              </div>
+              <div>
+                <span>ReferenceError </span
+                ><em>An illegal reference has occurred </em>
+              </div>
+              <div>
+                <span>SyntaxError </span><em>A syntax error has occurred </em>
+              </div>
+              <div>
+                <span>TypeError </span><em>A type error has occurred </em>
+              </div>
+              <div>
+                <span>URIError </span
+                ><em>An encodeURI() error has occurred </em>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>JSON</h2>
+        <div class="panelHelper">JavaScript Object Notation</div>
+        <div class="panelInner">
+          <div class="wrapCharCodes">
+            <pre><span class="keyword">let</span> str <span>=</span> <span>'{"names":['</span> <span>+</span> <span class="jsComment">// crate JSON object</span>
+<span>'{"first":"Hakuna","lastN":"Matata" },'</span> <span>+</span>
+<span>'{"first":"Jane","lastN":"Doe" },'</span> <span>+</span>
+<span>'{"first":"Air","last":"Jordan" }]}'</span>;
+obj <span>=</span> JSON.<span class="method">parse</span>(str); <span class="jsComment">// parse</span>
+<span class="global">document</span>.<span class="method">write</span>(obj.names[<span>1</span>].first); <span class="jsComment">// access</span>
+</pre>
+            <h4>Send</h4>
+            <pre><span class="keyword">let</span> myObj <span>=</span> { <span class="string">"name"</span>:<span class="string">"Jane"</span>, <span class="string">"age"</span>:<span>18</span>, <span class="string">"city"</span>:<span class="string">"Chicago"</span> }; <span class="jsComment">// create object</span>
+<span class="keyword">let</span> myJSON <span>=</span> JSON.stringify(myObj); <span class="jsComment">// stringify</span>
+<span class="global">window</span>.<span class="method">location</span> <span>=</span> <span>"demo.php?x="</span> <span>+</span> myJSON; <span class="jsComment">// send to php</span>
+</pre>
+            <h4>Storing and retrieving</h4>
+            <pre>myObj <span>=</span> { <span class="string">"name"</span>:<span class="string">"Jane"</span>, <span class="string">"age"</span>:<span>18</span>, <span class="string">"city"</span>:<span class="string">"Chicago"</span> };
+myJSON <span>=</span> JSON.stringify(myObj); <span class="jsComment">// storing data</span>
+localStorage.setItem(<span class="string">"testJSON"</span>, myJSON); 
+</pre>
+            <pre>text <span>=</span> localStorage.getItem(<span class="string">"testJSON"</span>); <span class="jsComment">// retrieving data </span>
+obj <span>=</span> JSON.<span class="method">parse</span>(text);
+<span class="global">document</span>.<span class="method">write</span>(obj.<span class="method">name</span>);
+</pre>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Promises</h2>
+        <div class="panelHelper">
+          An object, used for asynchronous computations. A Promise represents a
+          value which may be available now, or in the future, or never.
+        </div>
+        <div class="panelInner">
+          <div class="wrapCharCodes">
+            <pre>function <span>sum</span> (a, b) {
+  <span>return</span> Promise(function (resolve, reject) { 
+ <span>setTimeout</span>(function () { <span class="jsComment">// send the response after 1 second</span>
+ <span class="keyword">if</span> (<span>typeof</span> a <span>!</span><span>==</span> <span class="string">"number"</span> <span>||</span> <span>typeof</span> b <span>!</span><span>==</span> <span class="string">"number"</span>) { <span class="jsComment">// testing input types</span>
+	 <span>return</span> reject(<span class="keyword">new</span> <span>TypeError</span>(<span>"Inputs must be numbers"</span>));
+ }
+ resolve(a <span>+</span> b);
+ }, <span>1000</span>);
+});
+}
+<span class="keyword">let</span> myPromise <span>=</span> sum(<span>10</span>, <span>5</span>);
+myPromsise.then(function (result) {
+  <span class="global">document</span>.<span class="method">write</span>(<span>" 10 + 5: "</span>, result);
+<span>return</span> sum(<span>null</span>, <span class="string">"foo"</span>); <span class="jsComment">// Invalid data and return another promise</span>
+}).then(function () { <span class="jsComment">// Won't be called because of the error</span>
+}).<span class="method">catch</span>(function (err) { <span class="jsComment">// The catch handler is called instead, after another second</span>
+<span>console</span><span class="method">.error</span>(err); <span class="jsComment">// =&gt; Please provide two numbers to sum.</span>
+});
+</pre>
+            <h4>States</h4>
+            <p>pending, fulfilled, rejected</p>
+            <h4>Properties</h4>
+            <p>Promise.length, Promise.prototype</p>
+            <h4>Methods</h4>
+            <div class="descriptionListing noscroller">
+              Promise.all(iterable), Promise.race(iterable),
+              Promise.reject(reason), Promise.resolve(value)
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Useful Links</h2>
+        <div class="panelHelper">A list of free useful resources.</div>
+        <div class="panelInner">
+          <ul class="buttonkaLista">
+            <li>
+              <a
+                href="https://html-cleaner.com/js/"
+                target="_blank"
+                rel="nofollow"
+                >JS cleaner</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://javascriptobfuscator.com/Javascript-Obfuscator.aspx"
+                target="_blank"
+                rel="nofollow"
+                >Obfuscator</a
+              >
+            </li>
+            <li>
+              <a href="https://caniuse.com/" target="_blank" rel="nofollow"
+                >Can I use?</a
+              >
+            </li>
+            <li>
+              <a href="https://nodejs.org/en/" target="_blank" rel="nofollow"
+                >Node.js</a
+              >
+            </li>
+            <li>
+              <a href="https://jquery.com/" target="_blank" rel="nofollow"
+                >jQuery</a
+              >
+            </li>
+            <li>
+              <a href="https://www.regexpal.com/" target="_blank" rel="nofollow"
+                >RegEx tester</a
+              >
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
